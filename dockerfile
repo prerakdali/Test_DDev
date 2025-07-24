@@ -55,7 +55,16 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
     apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Step 8: Ensure 'docker' group exists and add user
-RUN groupmod -g ${DOCKER_GID} docker && usermod -aG docker ubuntu
+RUN existing_gid=$(getent group docker | cut -d: -f3) && \
+    if [ "$existing_gid" != "${DOCKER_GID}" ]; then \
+        if getent group "${DOCKER_GID}" > /dev/null; then \
+            echo "GID ${DOCKER_GID} already in use. Skipping groupmod."; \
+        else \
+            groupmod -g ${DOCKER_GID} docker; \
+        fi \
+    fi && \
+    usermod -aG docker ubuntu
+
 
 # Final switch back to user and working directory
 USER ubuntu
