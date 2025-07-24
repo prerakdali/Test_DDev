@@ -25,23 +25,23 @@ This repository sets up a containerized development environment for working with
 ---
 
 ## 🧭 Usage Guide
-🛠 1. Clone this repository
+## 🛠 1. Clone this repository
 
 **git clone <your-repo-url>
 **cd <your-repo-directory>
 
-🔧 2. Fix Docker Socket Permissions (Host Machine)
+## 🔧 2. Fix Docker Socket Permissions (Host Machine)
 **sudo chgrp docker /var/run/docker.sock
 **sudo chmod 660 /var/run/docker.sock
 
-🧱 3. Build and Start the Container
+## 🧱 3. Build and Start the Container
 **docker compose build
 **docker compose up -d
 
-🐚 4. Enter the Container
+## 🐚 4. Enter the Container
 **docker exec -it ddev-dev bash
 
-🧪 5. Inside the Container
+## 🧪 5. Inside the Container
 **newgrp docker
 
 
