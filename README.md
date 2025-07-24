@@ -31,7 +31,7 @@ git clone <your-repo-url>
 cd <your-repo-directory>
 
 ## 🔧 2. Fix Docker Socket Permissions (Host Machine)
-sudo chgrp docker /var/run/docker.sock
+sudo chgrp docker /var/run/docker.sock.
 sudo chmod 660 /var/run/docker.sock
 
 ## 🧱 3. Build and Start the Container
