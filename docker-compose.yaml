@@ -14,5 +14,5 @@ services:
       - PATH=/home/ubuntu/.local/bin:$PATH
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    user: ubuntu
+    user: "ubuntu:${DOCKER_GID}"
 
