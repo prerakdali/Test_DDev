@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        DOCKER_GID: ${DOCKER_GID}
     container_name: ddev-dev
     tty: true
     stdin_open: true
@@ -12,7 +14,7 @@ services:
     working_dir: /home/ubuntu/dd
     environment:
       - PATH=/home/ubuntu/.local/bin:$PATH
+      - DOCKER_GID=${DOCKER_GID}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     user: "ubuntu:${DOCKER_GID}"
-
