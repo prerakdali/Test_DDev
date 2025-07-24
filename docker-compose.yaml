@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  ddev-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ddev-dev
+    tty: true
+    stdin_open: true
+    privileged: true
+    working_dir: /home/ubuntu/dd
+    environment:
+      - PATH=/home/ubuntu/.local/bin:$PATH
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: ubuntu
