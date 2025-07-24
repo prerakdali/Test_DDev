@@ -1,5 +1,6 @@
 FROM ubuntu:24.04
 
+ARG DOCKER_GID 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Step 1: Install system dependencies
@@ -54,7 +55,7 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
     apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Step 8: Ensure 'docker' group exists and add user
-RUN groupadd -f docker && usermod -aG docker ubuntu
+RUN groupadd -g ${DOCKER_GID} docker && usermod -aG docker ubuntu
 
 # Final switch back to user and working directory
 USER ubuntu
